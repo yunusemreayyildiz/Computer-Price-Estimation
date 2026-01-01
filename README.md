@@ -168,7 +168,7 @@ This architecture improves both interpretability and robustness.
 - Matplotlib, Seaborn
 
 ---
-
+```
 ## Project Structure
 computer-price-estimation/
 ├── data/
@@ -189,7 +189,7 @@ computer-price-estimation/
 ├── README.md                    # Project documentation
 └── requirements.txt             # Environment specifications and dependencies
 
-
+```
 ## Future Improvements
 
 - **User Review Integration**
