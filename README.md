@@ -170,36 +170,29 @@ This architecture improves both interpretability and robustness.
 ---
 
 ## Project Structure
-computer-price-estimation/
-├── data/
-│ ├── raw/ # Original unprocessed dataset
-│ └── processed/ # Cleaned and feature-engineered data
-│
-├── notebooks/
-│ ├── eda.ipynb # Exploratory Data Analysis
-│ ├── feature_engineering.ipynb
-│ └── visualization.ipynb # Plots and analysis visuals
-│
-├── models/
-│ ├── price_prediction/ # Trained regression models
-│ └── form_factor_classification/ # Classification models
-│
-├── src/
-│ ├── preprocessing.py # Data cleaning & encoding
-│ ├── benchmark.py # CPU & GPU benchmark scoring
-│ ├── train_price_model.py
-│ └── train_classifier.py
-│
-├── README.md
-└── requirements.txt
 
 
 
 ## Future Improvements
-- Integration of real-world benchmark datasets
-- Improved minority class recall using advanced resampling
-- SHAP-based explainability
-- Full-stack deployment
+
+- **User Review Integration**
+  - Incorporate real user evaluations and rating data into the dataset.
+  - Introduce a user-based scoring mechanism to adjust price predictions based on perceived value, satisfaction, and brand trust.
+  - Combine hardware-based predictions with user sentiment to better model real-market pricing dynamics.
+
+- **User Rating System**
+  - Implement a normalized user rating score as an additional feature.
+  - Explore weighting strategies to balance objective hardware benchmarks with subjective user feedback.
+  - Analyze the impact of user ratings on premium device price estimation.
+
+- **Self-Supervised Learning (SSL) Systems**
+  - Apply Self-Supervised Learning techniques to learn latent hardware representations without relying on labeled price data.
+  - Use SSL pretraining to improve generalization on unseen or rare device configurations.
+  - Integrate SSL embeddings into downstream tasks such as price prediction and form factor classification.
+
+- **Advanced Model Explainability**
+  - Extend interpretability using SHAP or feature attribution methods.
+  - Analyze how benchmark scores and user feedback influence final predictions.
 
 ---
 
