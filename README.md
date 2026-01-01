@@ -1,3 +1,172 @@
 # Computer Price Estimation & Device Classification
 
-This project aims to predict computer prices using various hardware specifications and classify devices into their respective form factors (Laptop vs. Desktop types) using advanced Machine Learning techniques.1. Description of the ProblemThe goal is to provide a unified tool that can:Estimate Price: Predicting the market value of a computer based on its hardware (CPU, GPU, RAM, etc.)1111.Classify Device Type: Automatically determining the form factor (e.g., Gaming, Ultrabook, Workstation for laptops; ATX, Mini-ITX for desktops) based on physical and performance attributes22222.2. Dataset and PreprocessingThe dataset underwent extensive cleaning and feature engineering to improve model performance:Missing Value Handling: Numeric features were filled using the median, and categorical features using the mode3.Outlier Removal: Extreme outliers were cleaned using the IQR (Interquartile Range) method4.Normalization: Price targets were log-transformed to handle skewness5.Feature Engineering: * Extracted PPI (Pixels Per Inch) from resolution and display size6.Developed a Unified Benchmark Score for CPUs and GPUs by analyzing family, generation, and performance tiers777777777.One-Hot Encoding was applied to categorical variables8.3. Environment SpecificationsTo run this project, you need the following environment:Python 3.xKey Libraries: scikit-learn, XGBoost, CatBoost, LightGBM, Pandas, Matplotlib, Seaborn.Refer to requirements.txt for exact versions.4. Model Details and MethodologyWe implemented a multi-stage modeling approach:Regression (Price Prediction):Models used: Random Forest, XGBoost, CatBoost99.Stacking Regressor: A combined model using RF, LGBM, CatBoost, and XGB with a Linear Regression final estimator for stable predictions10101010.Classification (Form Factor):Hierarchical Stacking: Specialized Random Forest base learners were used to output probability scores (Meta Features)111111111111111111.Final Blender: A Logistic Regression model makes the final decision based on these probabilities and engineered features like weight_log12121212.5. Model ResultsPrice Prediction Metrics (After Feature Engineering)The Stacking model outperformed individual models13:| Model | R-squared ($R^2$) | MAE | RMSE || :--- | :--- | :--- | :--- || Random Forest | 0.9288 | $114.85 | $150.73 || CatBoost | 0.9353 | $109.54 | $143.62 || Stacking (Best) | 0.9366 | $108.67 | $142.23 |Classification AccuracyLaptop Form Factor: 82.1% Accuracy (Stacked Model)14.Desktop Form Factor: 77.6% Accuracy (Stacked Model)15.Note: The model showed near-perfect performance (F1=1.00) for ATX and Full-Tower desktop cases16.6. Training & Inference VisualizationsCorrelation Heatmap: Identified RAM and GPU tier as high-impact features for price17171717.Actual vs. Predicted Plots: Visual comparison showing the significant improvement after feature engineering (from ~$R^2$ 0.79 to 0.93)18181818.Feature Importance: Revealed that weight_kg and cpu_threads are critical predictors for device classification19191919.
+## Overview
+This project is an end-to-end **Machine Learning system for computer price estimation and device form factor classification**. It integrates **Exploratory Data Analysis (EDA)**, advanced **feature engineering**, **benchmark-based hardware scoring**, **ensemble learning**, and **hierarchical classification** to produce realistic, scalable, and explainable predictions.
+
+The system supports:
+- Computer **price prediction**
+- **Benchmark-based CPU & GPU scoring**
+- **Form factor classification** (Laptop & Desktop sub-types)
+- Rich **visualization and analysis**
+
+---
+
+## Project Scope
+
+### 1. Exploratory Data Analysis (EDA)
+The EDA phase focuses on understanding price drivers, feature distributions, correlations, and structural issues in the dataset.
+
+**Key steps:**
+- **Missing Value Handling**
+  - Numeric features: Median imputation
+  - Categorical features: Mode imputation
+
+- **Outlier Analysis**
+  - IQR-based filtering for extreme price values
+  - Error distribution analysis to evaluate prediction stability
+
+- **Visual Analysis**
+  - Correlation heatmaps for numeric features
+  - Price distribution histograms
+  - Pair plots for hardware–price relationships
+  - Box plots to identify hardware outliers
+
+- **Statistical Testing**
+  - ANOVA tests to measure categorical feature impact
+  - Example: WIFI type showed no statistically significant effect on price (p-value ≈ 0.72)
+
+**EDA Conclusion:**
+- Hardware specifications (CPU, RAM, Storage) are strong price predictors
+- Brand perception introduces premium pricing effects
+- Linear models struggle with high-end devices, motivating non-linear approaches
+
+---
+
+### 2. Feature Engineering
+Feature engineering is a core strength of this project and significantly improves model performance.
+
+#### Display Features
+- Resolution parsing (e.g., `1920x1080` → width & height)
+- Pixel Per Inch (PPI) calculation using screen size
+
+#### Hardware Normalization (Benchmarking)
+Raw CPU and GPU model names were weakly correlated with price. To address this, **custom benchmark scores** were created.
+
+##### CPU Benchmark Score
+A unified numeric score combining:
+- **Family** (e.g., i3 / i5 / i7 / i9, Ryzen tiers, Apple Silicon)
+- **Generation** (parsed from model number)
+- **Tier** (remaining digits)
+
+**Example CPUs:**
+- Intel i9-14373
+- AMD Ryzen 9 7512
+- Apple M3 Pro
+
+##### GPU Benchmark Score
+Similar methodology with GPU-specific adjustments:
+- Architectural generation extraction
+- Performance tier mapping
+- Premium adjustments for high-end models
+
+**Example GPUs:**
+- RTX 4080 Ti
+- RX 7800 XT
+- Arc B770 Limited
+
+#### Encoding
+- One-Hot Encoding for categorical features
+- CatBoost Encoding within stacking pipelines
+
+---
+
+### 3. Price Prediction
+
+#### Dataset Preparation
+- Train / Test split: **80% / 20%**
+- Separate preprocessing pipelines for numeric and categorical features
+- Log transformation applied to skewed price distributions
+
+#### Models Trained
+- Random Forest Regressor
+- XGBoost Regressor
+- CatBoost Regressor
+- **Stacking Regressor (Final Model)**
+
+**Stacking Configuration:**
+- Base learners: Random Forest, XGBoost, LightGBM, CatBoost
+- Final estimator: Linear Regression (stability and variance reduction)
+- Hyperparameter tuning via GridSearchCV
+
+The best-performing model was exported for use in the price prediction interface.
+
+---
+
+### 4. Benchmark-Based Prediction Improvement
+Benchmark features significantly improved:
+- Accuracy on premium devices
+- Cross-brand generalization
+- Reduction of brand-driven bias
+
+A clear performance gain was observed when comparing predictions **before vs after feature engineering**.
+
+---
+
+### 5. Device Form Factor Classification
+
+#### Problem Definition
+Classify devices into detailed **form factors**, not just Laptop or Desktop.
+
+**Examples:**
+- **Laptops:** Gaming, Mainstream, Workstation, 2-in-1
+- **Desktops:** Mini-ITX, Micro-ATX, ATX, Full-Tower
+
+#### Challenges
+- Class imbalance
+- Visually and structurally similar mid-range categories
+
+---
+
+### 6. Hierarchical Stacking Classification (Final Model)
+
+To address complexity and imbalance, a **Hierarchical Stacking Architecture** was implemented.
+
+#### Why Hierarchical?
+- Form factors are structured sub-categories
+- Flat multi-class models underperform on minority classes
+- Device-specific sub-models improve precision
+
+#### Architecture
+1. **Base Models**
+   - Binary Random Forest classifiers trained per form factor
+   - Oversampling applied to minority classes
+
+2. **Meta-Features**
+   - Probability outputs from base models
+   - Represent confidence scores for each form factor
+
+3. **Final Stacking Classifier**
+   - Meta-features combined with engineered features
+   - Multi-class prediction
+
+This architecture improves both interpretability and robustness.
+
+---
+
+### 7. Model Performance Highlights
+- Near-perfect performance on distinct desktop form factors (ATX, Full-Tower)
+- Strong classification of Gaming and Mainstream laptops
+- Remaining challenges in mid-range and hybrid categories
+
+---
+
+## Technologies Used
+- Python
+- Pandas, NumPy
+- Scikit-learn
+- XGBoost, CatBoost, LightGBM
+- Matplotlib, Seaborn
+
+---
+
+## Project Structure (Suggested)
