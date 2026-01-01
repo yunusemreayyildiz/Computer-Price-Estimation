@@ -15,17 +15,17 @@ The system supports:
 The data used in this project is sourced from the **[All Computer Prices Dataset](https://www.kaggle.com/datasets/paperxd/all-computer-prices)** on Kaggle.
 
 **Key Features of the Dataset:**
-* [cite_start]**Technical Specs:** Detailed hardware info including CPU/GPU models, RAM capacity, and storage[cite: 29].
-* [cite_start]**Physical Attributes:** Display size, screen resolution, and device weight[cite: 147, 458].
-* [cite_start]**Market Data:** Release years, brand information, and the target variable: **Price**[cite: 28, 57].
-* [cite_start]**Processing:** Numeric features were filled using the median, and categorical features using the mode[cite: 26, 27].
+* [cite_start]**Technical Specs:** Detailed hardware info including CPU/GPU models, RAM capacity, and storage.
+* [cite_start]**Physical Attributes:** Display size, screen resolution, and device weight.
+* [cite_start]**Market Data:** Release years, brand information, and the target variable: **Price**.
+* [cite_start]**Processing:** Numeric features were filled using the median, and categorical features using the model.
 
 ---
 
 ## Project Scope
 
 ### 1. Exploratory Data Analysis (EDA)
-The EDA phase focuses on understanding price drivers, feature distributions, correlations, and structural issues in the dataset.
+The EDA phase focuses on understanding price , feature distributions, correlations, and structural issues in the dataset.
 
 **Key steps:**
 - **Missing Value Handling**
