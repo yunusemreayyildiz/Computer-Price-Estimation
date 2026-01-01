@@ -169,4 +169,45 @@ This architecture improves both interpretability and robustness.
 
 ---
 
-## Project Structure (Suggested)
+## Project Structure
+computer-price-estimation/
+├── data/
+│ ├── raw/ # Original unprocessed dataset
+│ └── processed/ # Cleaned and feature-engineered data
+│
+├── notebooks/
+│ ├── eda.ipynb # Exploratory Data Analysis
+│ ├── feature_engineering.ipynb
+│ └── visualization.ipynb # Plots and analysis visuals
+│
+├── models/
+│ ├── price_prediction/ # Trained regression models
+│ └── form_factor_classification/ # Classification models
+│
+├── src/
+│ ├── preprocessing.py # Data cleaning & encoding
+│ ├── benchmark.py # CPU & GPU benchmark scoring
+│ ├── train_price_model.py
+│ └── train_classifier.py
+│
+├── README.md
+└── requirements.txt
+
+
+
+## Future Improvements
+- Integration of real-world benchmark datasets
+- Improved minority class recall using advanced resampling
+- SHAP-based explainability
+- Full-stack deployment
+
+---
+
+## Authors
+**Computer Price Estimation Project**  
+Machine Learning & Data Engineering focused academic project
+
+---
+
+## License
+This project is intended for academic and portfolio use.
