@@ -226,8 +226,9 @@ computer-price-estimation/
 
 ## Authors
 **Computer Price Estimation Project**  
-Machine Learning & Data Engineering focused academic project
-
+-Yunus Emre Ayyilidiz 
+-Ferit Goktug Vardar
+-Aysel Balci
 ---
 
 ## License
