@@ -15,10 +15,10 @@ The system supports:
 The data used in this project is sourced from the **[All Computer Prices Dataset](https://www.kaggle.com/datasets/paperxd/all-computer-prices)** on Kaggle.
 
 **Key Features of the Dataset:**
-* [cite_start]**Technical Specs:** Detailed hardware info including CPU/GPU models, RAM capacity, and storage.
-* [cite_start]**Physical Attributes:** Display size, screen resolution, and device weight.
-* [cite_start]**Market Data:** Release years, brand information, and the target variable: **Price**.
-* [cite_start]**Processing:** Numeric features were filled using the median, and categorical features using the model.
+* **Technical Specs:** Detailed hardware info including CPU/GPU models, RAM capacity, and storage.
+* **Physical Attributes:** Display size, screen resolution, and device weight.
+* **Market Data:** Release years, brand information, and the target variable: **Price**.
+* **Processing:** Numeric features were filled using the median, and categorical features using the model.
 
 ---
 
