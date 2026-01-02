@@ -182,21 +182,17 @@ This architecture improves both interpretability and robustness.
 ```
 ## Project Structure
 computer-price-estimation/
+
 ├── data/
-│   ├── raw/                     # Original unprocessed dataset [cite: 142]
-│   └── processed/               # Cleaned, log-transformed, and feature-engineered data [cite: 143, 144]
+│   ├── raw/                     # Original unprocessed dataset
+│   └── processed/               # Cleaned, log-transformed, and feature-engineered data
+├── metrics/
 ├── notebooks/
-│   ├── eda.ipynb                # Exploratory Data Analysis (Correlation, Price Dist, Outliers) [cite: 37, 38, 111]
-│   ├── feature_engineering.ipynb # Benchmarking and PPI calculations [cite: 147, 148]
-│   └── visualization.ipynb      # Actual vs. Predicted plots and metrics [cite: 196]
-├── models/
-│   ├── price_prediction/        # Trained Stacking, XGB, and CatBoost models [cite: 166, 170]
-│   └── form_factor_classification/ # Hierarchical Stacking Classifier files 
+│   ├── eda.ipynb                # Exploratory Data Analysis (Correlation, Price Dist, Outliers)
 ├── src/
-│   ├── preprocessing.py         # Missing value handling and encoding [cite: 25, 150]
-│   ├── benchmark.py             # CPU & GPU unified numeric metric scoring [cite: 284, 344]
-│   ├── train_price_model.py     # StackingRegressor training pipeline [cite: 167]
-│   └── train_classifier.py      # Logistic Regression blending and meta-feature training [cite: 656, 670]
+│   ├── price_prediction/        # Trained Stacking, XGB, and CatBoost models 
+│   └── form_factor_classification/ # Hierarchical Stacking Classifier files
+├── visualizations/
 ├── README.md                    # Project documentation
 └── requirements.txt             # Environment specifications and dependencies
 
