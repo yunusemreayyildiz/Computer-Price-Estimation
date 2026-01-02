@@ -1,4 +1,5 @@
 import json
+from pathlib import Path
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
@@ -10,7 +11,14 @@ import seaborn as sns
 
 from metrics_exporter import exportMetrics
 
-df = pd.read_csv('computer_prices_all.csv')
+#Project Root
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
+
+#Filepaths
+dataset_filename = "computer_prices_all.csv"
+DATASET_PATH = BASE_DIR / "data" / dataset_filename
+
+df = pd.read_csv(DATASET_PATH)
 
 # Step 1: Load data and fix or synthesize missing/incorrect weight values
 # The following function assigns plausible weights based on `form_factor`.

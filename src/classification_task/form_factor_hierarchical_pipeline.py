@@ -1,4 +1,5 @@
 
+from pathlib import Path
 import os, warnings
 
 from metrics_exporter import exportMetrics
@@ -17,10 +18,15 @@ import matplotlib.pyplot as plt
 RANDOM_STATE = 42
 np.random.seed(RANDOM_STATE)
 
-DATA_PATH = 'computer_prices_all.csv'
+#Project Root
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
-print("Loading:", DATA_PATH)
-df = pd.read_csv(DATA_PATH)
+#Filepaths
+dataset_filename = "computer_prices_all.csv"
+DATASET_PATH = BASE_DIR / "data" / dataset_filename
+
+print("Loading:", DATASET_PATH)
+df = pd.read_csv(DATASET_PATH)
 print("Rows, cols:", df.shape)
 
 # keep backup of original

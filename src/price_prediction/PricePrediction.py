@@ -1,4 +1,5 @@
 import math
+from pathlib import Path
 from category_encoders import CatBoostEncoder
 from lightgbm import LGBMRegressor
 import pandas as pd
@@ -16,10 +17,18 @@ from xgboost import XGBRegressor
 import pickle
 from feature_extraction import *
 import json
+
 ### CODE SETTINGS ###
 EXPORT_SETS = False
 EXPORT_BENCHMARK_PLOTS = False
 RANDOM_STATE = 42
+
+#Project Root
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
+
+#Filepaths
+dataset_filename = "computer_prices_all.csv"
+DATASET_PATH = BASE_DIR / "data" / dataset_filename
 
 #Used for printing importance of features in dataset
 def printFeatureImportances(cols, features):
@@ -118,7 +127,7 @@ def assignGPU(row):
 
 ### LOAD THE DATASET ###
 
-df = pd.read_csv("computer_prices_all.csv") #Read the computer prices dataset
+df = pd.read_csv(DATASET_PATH) #Read the computer prices dataset
 print("Reading dataset successful")
 
 #Below are our columns to include for process and target column is the value we are predicting in model.

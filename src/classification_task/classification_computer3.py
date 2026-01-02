@@ -18,6 +18,7 @@ are not installed.
 """
 
 import os
+from pathlib import Path
 import warnings
 
 from metrics_exporter import exportMetrics
@@ -32,13 +33,17 @@ from sklearn.metrics import classification_report, accuracy_score, confusion_mat
 import matplotlib.pyplot as plt
 RANDOM_STATE = 42
 np.random.seed(RANDOM_STATE)
-DATA_PATH = 'computer_prices_all.csv'
-if not os.path.exists(DATA_PATH):
-    # fallback to path used in this environment
-    DATA_PATH = '/mnt/data/computer_prices_all.csv'
+
+#Project Root
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
+
+#Filepaths
+dataset_filename = "computer_prices_all.csv"
+DATASET_PATH = BASE_DIR / "data" / dataset_filename
+
 # Load
-print('Loading:', DATA_PATH)
-df = pd.read_csv(DATA_PATH)
+print('Loading:', DATASET_PATH)
+df = pd.read_csv(DATASET_PATH)
 print('Rows, cols:', df.shape)
 print(df[['device_type','form_factor','weight_kg']].head())
 
