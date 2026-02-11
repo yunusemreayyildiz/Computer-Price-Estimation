@@ -10,7 +10,7 @@ The system supports:
 - Rich **visualization and analysis**
 
 ---
-## 📊 Dataset Information
+##  Dataset Information
 
 The data used in this project is sourced from the **[All Computer Prices Dataset](https://www.kaggle.com/datasets/paperxd/all-computer-prices)** on Kaggle.
 
