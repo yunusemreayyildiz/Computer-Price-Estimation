@@ -1,4 +1,7 @@
 # Computer Price Estimation & Device Classification
+![Python](https://img.shields.io/badge/Python-3.8%2B-blue)
+![Scikit-Learn](https://img.shields.io/badge/Library-Scikit--Learn-orange)
+![License](https://img.shields.io/badge/License-MIT-green)
 
 ## Overview
 This project is an end-to-end **Machine Learning system for computer price estimation and device form factor classification**. It integrates **Exploratory Data Analysis (EDA)**, advanced **feature engineering**, **benchmark-based hardware scoring**, **ensemble learning**, and **hierarchical classification** to produce realistic, scalable, and explainable predictions.
@@ -197,6 +200,22 @@ computer-price-estimation/
 └── requirements.txt             # Environment specifications and dependencies
 
 ```
+## 🚀 How to Run (Installation & Usage)
+
+To run this project on your local machine, follow these steps:
+
+### 1. Installation
+Clone the repository and install the required dependencies:
+
+```bash
+git clone [https://github.com/yunusemreayyildiz/Computer-Price-Estimation.git](https://github.com/yunusemreayyildiz/Computer-Price-Estimation.git)
+cd Computer-Price-Estimation
+pip install -r requirements.txt
+
+# To run the graphical interface:
+python src/price_prediction/PricePrediction_interface.py
+```
+
 ## Future Improvements
 
 - **User Review Integration**
@@ -228,4 +247,4 @@ computer-price-estimation/
 ---
 
 ## License
-This project is intended for academic and portfolio use.
+This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
